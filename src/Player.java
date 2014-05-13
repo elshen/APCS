@@ -42,7 +42,7 @@ public class Player
 		double xDistance = loc.getX() - x;
 		double yDistance = loc.getY() - y;
 
-		if ((xDistance * xDistance) + (yDistance * yDistance) <= (RADIUSP + Location.RADIUS) * (RADIUSP + Location.RADIUS)) // finds if player is touching a location
+		if ((xDistance * xDistance) + (yDistance * yDistance) <= (RADIUSP + Location.LRADIUS) * (RADIUSP + Location.LRADIUS)) // finds if player is touching a location
 		{
 			if () // check to make sure that its not the most recently dropped location
 			{

@@ -13,7 +13,7 @@ public class Location
 {
   private int x;
   private int y;
-  public static final int RADIUS = 5;
+  public static final int LRADIUS = 5;
   private Color c;
   
   public Location(int dx, int dy, Color dcolor)
