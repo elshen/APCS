@@ -14,11 +14,16 @@ public class Player
 {
 	private ArrayList<Location> listOfLocs;
 	private Color color;
+	private int x;
+	private int y;
+	final int RADIUS = 5;
 	
-	public Player(Color color)
+	public Player(Color color, int xIn, int xIn)
 	{
 		listOfLocs = new ArrayList<Location>();
 		this.color = color;
+		x = xIn;
+		y = yIn;
 	}
 	public ArrayList<Location> getLocs()
 	{
