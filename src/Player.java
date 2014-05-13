@@ -18,10 +18,10 @@ public class Player
 	private int y;
 	private int dx;
 	private int dy;
-	final static int RADIUS = 5;
-	final static int V = 6;
+	public final static int RADIUSP = 5;
+	public final static int V = 6;
 	
-	public Player(Color color, int xIn, int xIn)
+	public Player(Color color, int xIn, int yIn)
 	{
 		listOfLocs = new ArrayList<Location>();
 		this.color = color;
@@ -42,7 +42,7 @@ public class Player
 		double xDistance = loc.getX() - x;
 		double yDistance = loc.getY() - y;
 
-		if ((xDistance * xDistance) + (yDistance * yDistance) <= (RADIUS + Location.RADIUS) * (RADIUS + Location.RADIUS)) // finds if player is touching a location
+		if ((xDistance * xDistance) + (yDistance * yDistance) <= (RADIUSP + Location.RADIUS) * (RADIUSP + Location.RADIUS)) // finds if player is touching a location
 		{
 			if () // check to make sure that its not the most recently dropped location
 			{
