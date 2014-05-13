@@ -16,7 +16,10 @@ public class Player
 	private Color color;
 	private int x;
 	private int y;
-	final int RADIUS = 5;
+	private int dx;
+	private int dy;
+	final static int RADIUS = 5;
+	final static int V = 6;
 	
 	public Player(Color color, int xIn, int xIn)
 	{
