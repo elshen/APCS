@@ -36,6 +36,18 @@ public class Location
     public Color getColor()
    {
 	return c;
-    }
-  
+   }
+   
+   public int compareTo(Location loc)
+   {
+   	if( loc.getX == x && loc.getY ==y)
+   	{
+   		return 0;
+   	}
+   	
+   	else
+   	{
+   		return -1;
+   	}
+   }
 }
