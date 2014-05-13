@@ -9,8 +9,8 @@ public class Location
   public Location(int dx, int dy, Color dcolor)
   {
     x = dx;
-    y = dy
-    c = dcolor
+    y = dy;
+    c = dcolor;
   }
   
 }
