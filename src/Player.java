@@ -28,4 +28,26 @@ public class Player
 	{
 		
 	}
+	
+	public boolean checkHit(Location loc)
+	{
+		double xDistance = loc.getX() - x;
+		double yDistance = loc.getY() - y;
+
+		if ((xDistance * xDistance) + (yDistance * yDistance) <= (RADIUS + Location.RADIUS) * (RADIUS + Location.RADIUS)) // finds if player is touching a location
+		{
+			if () // check to make sure that its not the most recently dropped location
+			{
+				return false;
+			}
+			else
+			{
+				return true;
+			}
+		}
+		else 
+		{
+			return false;
+		}
+	}
 }
