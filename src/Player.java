@@ -13,6 +13,7 @@ import java.util.Random;
 public class Player 
 {
 	private ArrayList<Location> listOfLocs;
+	private Location lastLoc;
 	private Color color;
 	private int x;
 	private int y;
@@ -44,7 +45,7 @@ public class Player
 
 		if ((xDistance * xDistance) + (yDistance * yDistance) <= (RADIUSP + Location.LRADIUS) * (RADIUSP + Location.LRADIUS)) // finds if player is touching a location
 		{
-			if () // check to make sure that its not the most recently dropped location
+			if (loc.compareTo(lastLoc) == 0) // check to make sure that its not the most recently dropped location
 			{
 				return false;
 			}
