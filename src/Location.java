@@ -23,4 +23,14 @@ public class Location
     c = dcolor;
   }
   
+  public double getX()
+	{
+		return x;
+	}
+	
+	public double getY()
+	{
+		return y;
+	}
+  
 }
