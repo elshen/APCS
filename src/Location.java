@@ -32,5 +32,10 @@ public class Location
    {
 	return y;
     }
+    
+    public Color getColor()
+   {
+	return c;
+    }
   
 }
