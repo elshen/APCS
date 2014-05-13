@@ -24,13 +24,13 @@ public class Location
   }
   
   public double getX()
-	{
-		return x;
-	}
+  {
+	return x;
+   }
 	
-	public double getY()
-	{
-		return y;
-	}
+   public double getY()
+   {
+	return y;
+    }
   
 }
