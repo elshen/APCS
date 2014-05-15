@@ -40,6 +40,28 @@ public class Player
 		lastLoc = listOfLocs.get(listOfLocs.size() - 2);
 	}
 	
+	public boolean checkCollisions(Player otherPlayer)
+	{
+		if( x >= WINDOW_WIDTH || x <= 0)
+			return true;
+		
+		if (y >= WINDOW_LENGTH|| y <= 0)
+			return true;
+			
+		for(Location loc ; listOfLocs)
+		{
+			if( checkHit(loc) )
+				return true;
+		}
+		
+		for(Location loc ; otherPLayer.getLocs())
+		{
+			if( checkHit(loc) )
+				return true;
+		}
+		return false;
+	}
+	
 	public boolean checkHit(Location loc)
 	{
 		double xDistance = loc.getX() - x;
