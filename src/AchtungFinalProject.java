@@ -11,20 +11,29 @@ import java.util.Random;
 
 public class AchtungFinalProject extends JFrame implements ActionListener, KeyListener
 {
-	public static final int WINDOW_WIDTH = 1000;
-	public static final int WINDOW_HEIGHT = 800;
+	static final int WINDOW_WIDTH = 1000;
+	static final int WINDOW_HEIGHT = 800;
 	static final int TOP_OF_WINDOW = 22;	// Top of the visible window
-	public static final int DELAY_IN_MILLISEC = 100;  // Time delay between updates
-	public static final int PLAYERONESTARTX = 250;
-	public static final int PLAYERONESTARTY = 200;
-	public static final int PLAYERTWOSTARTX = 750;
-	public static final int PLAYERTWOSTARTY = 600;
+	public static final int DELAY_IN_MILLISEC = 50;  // Time delay between updates
+	public static final int RADIUS = 4;
+	public static final double MAX_VELOCITY = 3;
+	
+	public static double x = WINDOW_WIDTH / 2;
+	public static double y = WINDOW_HEIGHT / 2;
+	public static double multiple = .2;
+	public static double dx = 3;
+	public static double dy = 3;
+	
+	public static boolean movingLeft;
+	public static boolean movingRight;
+	
 
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) 
 	{
+		// TODO Auto-generated method stub
 		AchtungFinalProject mb = new AchtungFinalProject();
 	}
 	
@@ -51,6 +60,30 @@ public class AchtungFinalProject extends JFrame implements ActionListener, KeyLi
 	 */
 	public void actionPerformed(ActionEvent e)
 	{	
+		if(movingLeft)
+		{
+			double temp = dx;
+			dx = dx + multiple * dy;
+			dy = dy - multiple * temp;
+			double currentVelocity = Math.sqrt(dx*dx + dy*dy);
+			dx = dx / currentVelocity * MAX_VELOCITY;
+			dy = dy / currentVelocity * MAX_VELOCITY;
+		}
+		if(movingRight)
+		{
+			double temp = dx;
+			dx = dx - multiple * dy;
+			dy = dy + multiple * temp;
+			double currentVelocity = Math.sqrt(dx*dx + dy*dy);
+			dx = dx / currentVelocity * MAX_VELOCITY;
+			dy = dy / currentVelocity * MAX_VELOCITY;
+		}
+		
+		x = x + dx;
+		y = y + dy;
+		
+		System.out.println(Math.sqrt(dx*dx + dy*dy));
+		
 		// Update the window.
 		repaint();
 
@@ -65,9 +98,11 @@ public class AchtungFinalProject extends JFrame implements ActionListener, KeyLi
 		int keyCode = e.getKeyCode();
 		if (keyCode == KeyEvent.VK_RIGHT)
 		{
+			movingRight = true;
 		}
 		if (keyCode == KeyEvent.VK_LEFT)
 		{
+			movingLeft = true;
 		}
 	}
 
@@ -89,13 +124,24 @@ public class AchtungFinalProject extends JFrame implements ActionListener, KeyLi
 	 */
 	public void keyReleased(KeyEvent e)					// #4C
 	{
+		int keyCode = e.getKeyCode();
+		if (keyCode == KeyEvent.VK_RIGHT)
+		{
+			movingRight = false;
+		}
+		if (keyCode == KeyEvent.VK_LEFT)
+		{
+			movingLeft = false;
+		}
 	}
 
 	public void paint(Graphics g)
 	{
 		// Clear the window.
-		g.setColor(Color.black);
-		g.fillRect(0, TOP_OF_WINDOW, WINDOW_WIDTH, WINDOW_HEIGHT - TOP_OF_WINDOW);
+//		g.setColor(Color.black);
+//		g.fillRect(0, TOP_OF_WINDOW, WINDOW_WIDTH, WINDOW_HEIGHT - TOP_OF_WINDOW);
+		g.setColor(Color.red);
+		g.fillOval((int)x - RADIUS,(int)y - RADIUS, 2*RADIUS , 2*RADIUS);
 	}
 
 }
