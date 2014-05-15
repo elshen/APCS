@@ -35,7 +35,7 @@ public class Player
 	}
 	public void addNewLoc()
 	{
-		
+		Location loc = new Location(x, y, color);
 	}
 	
 	public boolean checkHit(Location loc)
