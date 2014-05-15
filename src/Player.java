@@ -109,7 +109,7 @@ public class Player
 	
 	public void setY( int newY)
 	{
-		Y = newY;
+		y = newY;
 	}
 	
 	public int getDX()
