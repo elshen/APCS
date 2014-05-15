@@ -13,6 +13,8 @@ import java.util.Random;
 public class Player 
 {
 	private ArrayList<Location> listOfLocs;
+	public static final int WINDOW_WIDTH = 1000;
+	public static final int WINDOW_HEIGHT = 800;
 	private Location lastLoc;
 	private Color color;
 	private int x;
@@ -45,18 +47,18 @@ public class Player
 		if( x >= WINDOW_WIDTH || x <= 0)
 			return true;
 		
-		if (y >= WINDOW_LENGTH|| y <= 0)
+		if (y >= WINDOW_HEIGHT|| y <= 0)
 			return true;
 			
-		for(Location loc ; listOfLocs)
+		for(Location loc: listOfLocs)
 		{
-			if( checkHit(loc) )
+			if(checkHit(loc))
 				return true;
 		}
 		
-		for(Location loc ; otherPLayer.getLocs())
+		for(Location loc: otherPlayer.getLocs())
 		{
-			if( checkHit(loc) )
+			if(checkHit(loc))
 				return true;
 		}
 		return false;

@@ -11,8 +11,8 @@ import java.util.Random;
 
 public class AchtungFinalProject extends JFrame implements ActionListener, KeyListener
 {
-	static final int WINDOW_WIDTH = 1000;
-	static final int WINDOW_HEIGHT = 800;
+	public static final int WINDOW_WIDTH = 1000;
+	public static final int WINDOW_HEIGHT = 800;
 	static final int TOP_OF_WINDOW = 22;	// Top of the visible window
 	public static final int DELAY_IN_MILLISEC = 100;  // Time delay between updates
 
