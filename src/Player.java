@@ -85,4 +85,52 @@ public class Player
 			return false;
 		}
 	}
+	
+	public void move()
+	{
+		x = x + dx;
+		y = y + dy;
+	}
+	
+	public int getX()
+	{
+		return x;
+	}
+	
+	public int getY()
+	{
+		return y;
+	}
+	
+	public void setX( int newX)
+	{
+		x = newX;
+	}
+	
+	public void setY( int newY)
+	{
+		Y = newY;
+	}
+	
+	public int getDX()
+	{
+		return dx;
+	}
+	
+	public int getDY()
+	{
+		return dy;
+	}
+	
+	public void setDX( int newDX)
+	{
+		dx = newDX;
+	}
+	
+	public void setDY( int newDY)
+	{
+		dy = newDY;
+	}
+	
+	
 }
