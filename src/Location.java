@@ -40,7 +40,7 @@ public class Location
    
    public int compareTo(Location loc)
    {
-   	if( loc.getX == x && loc.getY ==y)
+   	if( loc.getX() == x && loc.getY() ==y)
    	{
    		return 0;
    	}

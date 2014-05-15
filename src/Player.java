@@ -36,6 +36,8 @@ public class Player
 	public void addNewLoc()
 	{
 		Location loc = new Location(x, y, color);
+		listOfLocs.add(loc);
+		lastLoc = listOfLocs.get(listOfLocs.size() - 2);
 	}
 	
 	public boolean checkHit(Location loc)
