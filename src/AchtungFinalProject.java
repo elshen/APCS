@@ -15,13 +15,16 @@ public class AchtungFinalProject extends JFrame implements ActionListener, KeyLi
 	public static final int WINDOW_HEIGHT = 800;
 	static final int TOP_OF_WINDOW = 22;	// Top of the visible window
 	public static final int DELAY_IN_MILLISEC = 100;  // Time delay between updates
+	public static final int PLAYERONESTARTX = 250;
+	public static final int PLAYERONESTARTY = 200;
+	public static final int PLAYERTWOSTARTX = 750;
+	public static final int PLAYERTWOSTARTY = 600;
 
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) 
 	{
-		// TODO Auto-generated method stub
 		AchtungFinalProject mb = new AchtungFinalProject();
 	}
 	
