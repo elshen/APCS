@@ -14,18 +14,28 @@ public class AchtungFinalProject extends JFrame implements ActionListener, KeyLi
 	static final int WINDOW_WIDTH = 1000;
 	static final int WINDOW_HEIGHT = 800;
 	static final int TOP_OF_WINDOW = 22;	// Top of the visible window
-	public static final int DELAY_IN_MILLISEC = 50;  // Time delay between updates
-	public static final int RADIUS = 4;
+	public static final int DELAY_IN_MILLISEC = 40;  // Time delay between updates
 	public static final double MAX_VELOCITY = 3;
 	
-	public static double x = WINDOW_WIDTH / 2;
-	public static double y = WINDOW_HEIGHT / 2;
 	public static double multiple = .2;
-	public static double dx = 3;
-	public static double dy = 3;
+	public static double dx = Math.sqrt(MAX_VELOCITY*MAX_VELOCITY/2);
+	public static double dy = Math.sqrt(MAX_VELOCITY*MAX_VELOCITY/2);
 	
 	public static boolean movingLeft;
 	public static boolean movingRight;
+	public static boolean dead = false;
+	
+	public static boolean[][] pixelTemplate = 
+		{{false, false, false, false ,false, false, false},
+		{false, false, false, false ,false, false, false},
+		{false, false, true, true, true, false, false},
+		{false, false, true, true ,true, false, false},
+		{false, false, true, true ,true, false, false},
+		{false, false, false, false ,false, false, false},
+		{false, false, false, false ,false, false, false}};
+	public static boolean[][] screenPixels = new boolean[WINDOW_WIDTH][WINDOW_HEIGHT];
+	
+	public static Player p;
 	
 
 	/**
@@ -39,10 +49,22 @@ public class AchtungFinalProject extends JFrame implements ActionListener, KeyLi
 	
 	public AchtungFinalProject()
 	{
+		
+		for(int x = 0; x < WINDOW_WIDTH; x++)
+		{
+			for(int y = 0; y < WINDOW_HEIGHT; y++)
+			{
+				screenPixels[x][y] = false;
+			}
+		}
+		
+		p = new Player(Color.red, WINDOW_WIDTH/2, WINDOW_HEIGHT/2, 3, 3);
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Achtung");
 		setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
 		setVisible(true);
+		
 		
 		//Start Timer
 		Timer clock= new Timer(DELAY_IN_MILLISEC, this);
@@ -68,6 +90,9 @@ public class AchtungFinalProject extends JFrame implements ActionListener, KeyLi
 			double currentVelocity = Math.sqrt(dx*dx + dy*dy);
 			dx = dx / currentVelocity * MAX_VELOCITY;
 			dy = dy / currentVelocity * MAX_VELOCITY;
+			
+			p.setDX(dx);
+			p.setDY(dy);
 		}
 		if(movingRight)
 		{
@@ -77,17 +102,49 @@ public class AchtungFinalProject extends JFrame implements ActionListener, KeyLi
 			double currentVelocity = Math.sqrt(dx*dx + dy*dy);
 			dx = dx / currentVelocity * MAX_VELOCITY;
 			dy = dy / currentVelocity * MAX_VELOCITY;
+			
+			p.setDX(dx);
+			p.setDY(dy);
 		}
 		
-		x = x + dx;
-		y = y + dy;
-		
-		System.out.println(Math.sqrt(dx*dx + dy*dy));
-		
-		// Update the window.
-		repaint();
-
-		//When game ends saves top score
+		if(!dead)
+		{
+			p.move();
+			
+			if(p.getX() > 0 && p.getY() > 0 && p.getX() < WINDOW_WIDTH && p.getY() < WINDOW_HEIGHT)
+			{
+				if(screenPixels[(int)p.getX()][(int)p.getY()])
+				{
+					System.out.println("dead");
+					dead = true;
+				}
+				
+				int currentX = (int)(p.getX());
+				int currentY = (int)(p.getY());
+				
+				for(int x = currentX - 3; x <= currentX + 3; x++)
+				{
+					for(int y = currentY - 3; y <= currentY + 3; y++)
+					{
+						if(x > 0 && y > 0 && x < WINDOW_WIDTH && y < WINDOW_HEIGHT)
+						{
+							if(pixelTemplate[x+3-currentX][y+3-currentY])
+							{
+								screenPixels[x][y] = true;
+							}
+						}
+					}
+				}
+				//System.out.println(Math.sqrt(dx*dx + dy*dy));
+				
+			}
+			else
+			{
+				dead = true;
+			}
+			// Update the window.
+			repaint();
+		}
 	}
 
 	/**
@@ -140,8 +197,8 @@ public class AchtungFinalProject extends JFrame implements ActionListener, KeyLi
 		// Clear the window.
 //		g.setColor(Color.black);
 //		g.fillRect(0, TOP_OF_WINDOW, WINDOW_WIDTH, WINDOW_HEIGHT - TOP_OF_WINDOW);
-		g.setColor(Color.red);
-		g.fillOval((int)x - RADIUS,(int)y - RADIUS, 2*RADIUS , 2*RADIUS);
+		p.draw(g);
+		
 	}
 
 }
