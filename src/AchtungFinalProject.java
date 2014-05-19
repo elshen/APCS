@@ -36,6 +36,7 @@ public class AchtungFinalProject extends JFrame implements ActionListener, KeyLi
 	public static boolean[][] screenPixels = new boolean[WINDOW_WIDTH][WINDOW_HEIGHT];
 	
 	public static Player p;
+	public static int time = 0;
 	
 
 	/**
@@ -58,7 +59,7 @@ public class AchtungFinalProject extends JFrame implements ActionListener, KeyLi
 			}
 		}
 		
-		p = new Player(Color.red, WINDOW_WIDTH/2, WINDOW_HEIGHT/2, 3, 3);
+		p = new Player(Color.blue, WINDOW_WIDTH/2, WINDOW_HEIGHT/2, 3, 3);
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Achtung");
@@ -145,6 +146,8 @@ public class AchtungFinalProject extends JFrame implements ActionListener, KeyLi
 			// Update the window.
 			repaint();
 		}
+		time++;
+		
 	}
 
 	/**
@@ -195,8 +198,11 @@ public class AchtungFinalProject extends JFrame implements ActionListener, KeyLi
 	public void paint(Graphics g)
 	{
 		// Clear the window.
-//		g.setColor(Color.black);
-//		g.fillRect(0, TOP_OF_WINDOW, WINDOW_WIDTH, WINDOW_HEIGHT - TOP_OF_WINDOW);
+		if(time == 0)
+		{
+			g.setColor(Color.black);
+			g.fillRect(0, TOP_OF_WINDOW, WINDOW_WIDTH, WINDOW_HEIGHT - TOP_OF_WINDOW);
+		}
 		p.draw(g);
 		
 	}
