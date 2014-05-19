@@ -79,7 +79,7 @@ public class Player
 	
 	public void draw(Graphics g)
 	{
-		g.setColor(Color.red);
+		g.setColor(color);
 		g.fillOval((int)(x-RADIUSP), (int)(y - RADIUSP), (int)(RADIUSP*2), (int)(RADIUSP*2));
 	}
 
