@@ -132,7 +132,6 @@ public class AchtungFinalProject extends JFrame implements ActionListener, KeyLi
 
 			p2.setDX(dx2);
 			p2.setDY(dy2);
-			System.out.println("vk1");
 		}
 		if(keysPressed.contains(PLAYERTWORIGHT))
 		{
@@ -145,7 +144,6 @@ public class AchtungFinalProject extends JFrame implements ActionListener, KeyLi
 
 			p2.setDX(dx2);
 			p2.setDY(dy2);
-			System.out.println("vk2");
 		}
 
 		if(!dead)
