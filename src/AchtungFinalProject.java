@@ -5,6 +5,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import javax.swing.*;
+import java.util.ArrayList;
 
 import java.util.Scanner;
 import java.util.Random;
@@ -17,10 +18,10 @@ public class AchtungFinalProject extends JFrame implements ActionListener, KeyLi
 	static final int WINDOW_WIDTH = 1000;
 	static final int WINDOW_HEIGHT = 800;
 	static final int TOP_OF_WINDOW = 22;	// Top of the visible window
-	public static final int DELAY_IN_MILLISEC = 40;  // Time delay between updates
+	public static final int DELAY_IN_MILLISEC = 30;  // Time delay between updates
 	public static final double MAX_VELOCITY = 3;
 
-	public static double multiple = .2;
+	public static double multiple = .1;
 	public static double dx1 = Math.sqrt(MAX_VELOCITY*MAX_VELOCITY/2);
 	public static double dy1 = Math.sqrt(MAX_VELOCITY*MAX_VELOCITY/2);
 	public static double dx2 = Math.sqrt(MAX_VELOCITY*MAX_VELOCITY/2);
@@ -40,6 +41,7 @@ public class AchtungFinalProject extends JFrame implements ActionListener, KeyLi
 	private final Set<Integer> keysPressed = new HashSet<Integer>();
 	public static Player p1;
 	public static Player p2;
+	public static int time = 0;
 
 
 	/**
@@ -100,7 +102,7 @@ public class AchtungFinalProject extends JFrame implements ActionListener, KeyLi
 
 			p1.setDX(dx1);
 			p1.setDY(dy1);
-			
+
 		}
 		if(keysPressed.contains(KeyEvent.VK_RIGHT))
 		{
@@ -114,9 +116,9 @@ public class AchtungFinalProject extends JFrame implements ActionListener, KeyLi
 			p1.setDX(dx1);
 			p1.setDY(dy1);
 		}
-		
-		
-		if(keysPressed.contains(KeyEvent.VK_1))
+
+
+		if(keysPressed.contains(KeyEvent.VK_A))
 		{
 			double temp = dx2;
 			dx2 = dx2 + multiple * dy2;
@@ -129,7 +131,7 @@ public class AchtungFinalProject extends JFrame implements ActionListener, KeyLi
 			p2.setDY(dy2);
 			System.out.println("vk1");
 		}
-		if(keysPressed.contains(KeyEvent.VK_2))
+		if(keysPressed.contains(KeyEvent.VK_D))
 		{
 			double temp = dx2;
 			dx2 = dx2 - multiple * dy2;
@@ -177,7 +179,7 @@ public class AchtungFinalProject extends JFrame implements ActionListener, KeyLi
 			{
 				dead = true;
 			}
-				//System.out.println(Math.sqrt(dx*dx + dy*dy));
+			//System.out.println(Math.sqrt(dx*dx + dy*dy));
 			if(p2.getX() > 0 && p2.getY() > 0 && p2.getX() < WINDOW_WIDTH && p2.getY() < WINDOW_HEIGHT)
 			{
 				if(screenPixels[(int)p2.getX()][(int)p2.getY()])
@@ -209,7 +211,8 @@ public class AchtungFinalProject extends JFrame implements ActionListener, KeyLi
 			}
 			// Update the window.
 			repaint();
-			}
+		}
+		time++;
 	}
 
 	/**
@@ -244,11 +247,14 @@ public class AchtungFinalProject extends JFrame implements ActionListener, KeyLi
 	public void paint(Graphics g)
 	{
 		// Clear the window.
-//		g.setColor(Color.black);
-//		g.fillRect(0, TOP_OF_WINDOW, WINDOW_WIDTH, WINDOW_HEIGHT - TOP_OF_WINDOW);
+		if(time==0)
+		{
+			g.setColor(Color.black);
+			g.fillRect(0, TOP_OF_WINDOW, WINDOW_WIDTH, WINDOW_HEIGHT - TOP_OF_WINDOW);
+		}
 		p1.draw(g);
 		p2.draw(g);
 
 	}
-
+	
 }
