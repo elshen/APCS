@@ -8,6 +8,9 @@ import javax.swing.*;
 
 import java.util.Scanner;
 import java.util.Random;
+import java.util.Set;
+import java.util.HashSet;
+
 
 public class AchtungFinalProject extends JFrame implements ActionListener, KeyListener
 {
@@ -16,15 +19,15 @@ public class AchtungFinalProject extends JFrame implements ActionListener, KeyLi
 	static final int TOP_OF_WINDOW = 22;	// Top of the visible window
 	public static final int DELAY_IN_MILLISEC = 40;  // Time delay between updates
 	public static final double MAX_VELOCITY = 3;
-	
+
 	public static double multiple = .2;
-	public static double dx = Math.sqrt(MAX_VELOCITY*MAX_VELOCITY/2);
-	public static double dy = Math.sqrt(MAX_VELOCITY*MAX_VELOCITY/2);
-	
-	public static boolean movingLeft;
-	public static boolean movingRight;
+	public static double dx1 = Math.sqrt(MAX_VELOCITY*MAX_VELOCITY/2);
+	public static double dy1 = Math.sqrt(MAX_VELOCITY*MAX_VELOCITY/2);
+	public static double dx2 = Math.sqrt(MAX_VELOCITY*MAX_VELOCITY/2);
+	public static double dy2 = Math.sqrt(MAX_VELOCITY*MAX_VELOCITY/2);
+
 	public static boolean dead = false;
-	
+
 	public static boolean[][] pixelTemplate = 
 		{{false, false, false, false ,false, false, false},
 		{false, false, false, false ,false, false, false},
@@ -34,10 +37,10 @@ public class AchtungFinalProject extends JFrame implements ActionListener, KeyLi
 		{false, false, false, false ,false, false, false},
 		{false, false, false, false ,false, false, false}};
 	public static boolean[][] screenPixels = new boolean[WINDOW_WIDTH][WINDOW_HEIGHT];
-	
-	public static Player p;
-	public static int time = 0;
-	
+	private final Set<Integer> keysPressed = new HashSet<Integer>();
+	public static Player p1;
+	public static Player p2;
+
 
 	/**
 	 * @param args
@@ -47,10 +50,10 @@ public class AchtungFinalProject extends JFrame implements ActionListener, KeyLi
 		// TODO Auto-generated method stub
 		AchtungFinalProject mb = new AchtungFinalProject();
 	}
-	
+
 	public AchtungFinalProject()
 	{
-		
+
 		for(int x = 0; x < WINDOW_WIDTH; x++)
 		{
 			for(int y = 0; y < WINDOW_HEIGHT; y++)
@@ -58,21 +61,22 @@ public class AchtungFinalProject extends JFrame implements ActionListener, KeyLi
 				screenPixels[x][y] = false;
 			}
 		}
-		
-		p = new Player(Color.blue, WINDOW_WIDTH/2, WINDOW_HEIGHT/2, 3, 3);
+
+		p1 = new Player(Color.red, WINDOW_WIDTH/2, WINDOW_HEIGHT/2, 3, 3);
+		p2 = new Player(Color.blue, WINDOW_WIDTH/3, WINDOW_HEIGHT/3, 3, 3);
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Achtung");
 		setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
 		setVisible(true);
-		
-		
+
+
 		//Start Timer
 		Timer clock= new Timer(DELAY_IN_MILLISEC, this);
-				
+
 		//Create key Listener
 		addKeyListener(this);
-		
+
 		clock.start();
 	}
 
@@ -83,46 +87,78 @@ public class AchtungFinalProject extends JFrame implements ActionListener, KeyLi
 	 */
 	public void actionPerformed(ActionEvent e)
 	{	
-		if(movingLeft)
+
+		if(keysPressed.contains(KeyEvent.VK_LEFT))
 		{
-			double temp = dx;
-			dx = dx + multiple * dy;
-			dy = dy - multiple * temp;
-			double currentVelocity = Math.sqrt(dx*dx + dy*dy);
-			dx = dx / currentVelocity * MAX_VELOCITY;
-			dy = dy / currentVelocity * MAX_VELOCITY;
+			//left player one
+			double temp = dx1;
+			dx1 = dx1 + multiple * dy1;
+			dy1 = dy1 - multiple * temp;
+			double currentVelocity = Math.sqrt(dx1*dx1 + dy1*dy1);
+			dx1 = dx1 / currentVelocity * MAX_VELOCITY;
+			dy1 = dy1 / currentVelocity * MAX_VELOCITY;
+
+			p1.setDX(dx1);
+			p1.setDY(dy1);
 			
-			p.setDX(dx);
-			p.setDY(dy);
 		}
-		if(movingRight)
+		if(keysPressed.contains(KeyEvent.VK_RIGHT))
 		{
-			double temp = dx;
-			dx = dx - multiple * dy;
-			dy = dy + multiple * temp;
-			double currentVelocity = Math.sqrt(dx*dx + dy*dy);
-			dx = dx / currentVelocity * MAX_VELOCITY;
-			dy = dy / currentVelocity * MAX_VELOCITY;
-			
-			p.setDX(dx);
-			p.setDY(dy);
+			double temp = dx1;
+			dx1 = dx1 - multiple * dy1;
+			dy1 = dy1 + multiple * temp;
+			double currentVelocity = Math.sqrt(dx1*dx1 + dy1*dy1);
+			dx1 = dx1 / currentVelocity * MAX_VELOCITY;
+			dy1 = dy1 / currentVelocity * MAX_VELOCITY;
+
+			p1.setDX(dx1);
+			p1.setDY(dy1);
 		}
 		
+		
+		if(keysPressed.contains(KeyEvent.VK_1))
+		{
+			double temp = dx2;
+			dx2 = dx2 + multiple * dy2;
+			dy2 = dy2 - multiple * temp;
+			double currentVelocity = Math.sqrt(dx2*dx2 + dy2*dy2);
+			dx2 = dx2 / currentVelocity * MAX_VELOCITY;
+			dy2 = dy2 / currentVelocity * MAX_VELOCITY;
+
+			p2.setDX(dx2);
+			p2.setDY(dy2);
+			System.out.println("vk1");
+		}
+		if(keysPressed.contains(KeyEvent.VK_2))
+		{
+			double temp = dx2;
+			dx2 = dx2 - multiple * dy2;
+			dy2 = dy2 + multiple * temp;
+			double currentVelocity = Math.sqrt(dx2*dx2 + dy2*dy2);
+			dx2 = dx2 / currentVelocity * MAX_VELOCITY;
+			dy2 = dy2 / currentVelocity * MAX_VELOCITY;
+
+			p2.setDX(dx2);
+			p2.setDY(dy2);
+			System.out.println("vk2");
+		}
+
 		if(!dead)
 		{
-			p.move();
-			
-			if(p.getX() > 0 && p.getY() > 0 && p.getX() < WINDOW_WIDTH && p.getY() < WINDOW_HEIGHT)
+			p1.move();
+			p2.move();
+
+			if(p1.getX() > 0 && p1.getY() > 0 && p1.getX() < WINDOW_WIDTH && p1.getY() < WINDOW_HEIGHT)
 			{
-				if(screenPixels[(int)p.getX()][(int)p.getY()])
+				if(screenPixels[(int)p1.getX()][(int)p1.getY()])
 				{
 					System.out.println("dead");
 					dead = true;
 				}
-				
-				int currentX = (int)(p.getX());
-				int currentY = (int)(p.getY());
-				
+
+				int currentX = (int)(p1.getX());
+				int currentY = (int)(p1.getY());
+
 				for(int x = currentX - 3; x <= currentX + 3; x++)
 				{
 					for(int y = currentY - 3; y <= currentY + 3; y++)
@@ -136,8 +172,36 @@ public class AchtungFinalProject extends JFrame implements ActionListener, KeyLi
 						}
 					}
 				}
+			}
+			else
+			{
+				dead = true;
+			}
 				//System.out.println(Math.sqrt(dx*dx + dy*dy));
-				
+			if(p2.getX() > 0 && p2.getY() > 0 && p2.getX() < WINDOW_WIDTH && p2.getY() < WINDOW_HEIGHT)
+			{
+				if(screenPixels[(int)p2.getX()][(int)p2.getY()])
+				{
+					System.out.println("dead");
+					dead = true;
+				}
+
+				int currentX = (int)(p2.getX());
+				int currentY = (int)(p2.getY());
+
+				for(int x = currentX - 3; x <= currentX + 3; x++)
+				{
+					for(int y = currentY - 3; y <= currentY + 3; y++)
+					{
+						if(x > 0 && y > 0 && x < WINDOW_WIDTH && y < WINDOW_HEIGHT)
+						{
+							if(pixelTemplate[x+3-currentX][y+3-currentY])
+							{
+								screenPixels[x][y] = true;
+							}
+						}
+					}
+				}
 			}
 			else
 			{
@@ -145,9 +209,7 @@ public class AchtungFinalProject extends JFrame implements ActionListener, KeyLi
 			}
 			// Update the window.
 			repaint();
-		}
-		time++;
-		
+			}
 	}
 
 	/**
@@ -155,15 +217,7 @@ public class AchtungFinalProject extends JFrame implements ActionListener, KeyLi
 	 */
 	public void keyPressed(KeyEvent e)					// #4A
 	{
-		int keyCode = e.getKeyCode();
-		if (keyCode == KeyEvent.VK_RIGHT)
-		{
-			movingRight = true;
-		}
-		if (keyCode == KeyEvent.VK_LEFT)
-		{
-			movingLeft = true;
-		}
+		keysPressed.add(e.getKeyCode());
 	}
 
 	/**
@@ -184,27 +238,17 @@ public class AchtungFinalProject extends JFrame implements ActionListener, KeyLi
 	 */
 	public void keyReleased(KeyEvent e)					// #4C
 	{
-		int keyCode = e.getKeyCode();
-		if (keyCode == KeyEvent.VK_RIGHT)
-		{
-			movingRight = false;
-		}
-		if (keyCode == KeyEvent.VK_LEFT)
-		{
-			movingLeft = false;
-		}
+		keysPressed.remove(e.getKeyCode());
 	}
 
 	public void paint(Graphics g)
 	{
 		// Clear the window.
-		if(time == 0)
-		{
-			g.setColor(Color.black);
-			g.fillRect(0, TOP_OF_WINDOW, WINDOW_WIDTH, WINDOW_HEIGHT - TOP_OF_WINDOW);
-		}
-		p.draw(g);
-		
+//		g.setColor(Color.black);
+//		g.fillRect(0, TOP_OF_WINDOW, WINDOW_WIDTH, WINDOW_HEIGHT - TOP_OF_WINDOW);
+		p1.draw(g);
+		p2.draw(g);
+
 	}
 
 }
