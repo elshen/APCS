@@ -20,7 +20,10 @@ public class AchtungFinalProject extends JFrame implements ActionListener, KeyLi
 	static final int TOP_OF_WINDOW = 22;	// Top of the visible window
 	public static final int DELAY_IN_MILLISEC = 30;  // Time delay between updates
 	public static final double MAX_VELOCITY = 3;
-
+	public static final int PLAYERONELEFT = KeyEvent.VK_LEFT;
+	public static final int PLAYERONERIGHT = KeyEvent.VK_RIGHT;
+	public static final int PLAYERTWOLEFT = KeyEvent.VK_A;
+	public static final int PLAYERTWORIGHT = KeyEvent.VK_D;
 	public static double multiple = .1;
 	public static double dx1 = Math.sqrt(MAX_VELOCITY*MAX_VELOCITY/2);
 	public static double dy1 = Math.sqrt(MAX_VELOCITY*MAX_VELOCITY/2);
@@ -90,7 +93,7 @@ public class AchtungFinalProject extends JFrame implements ActionListener, KeyLi
 	public void actionPerformed(ActionEvent e)
 	{	
 
-		if(keysPressed.contains(KeyEvent.VK_LEFT))
+		if(keysPressed.contains(PLAYERONELEFT))
 		{
 			//left player one
 			double temp = dx1;
@@ -104,7 +107,7 @@ public class AchtungFinalProject extends JFrame implements ActionListener, KeyLi
 			p1.setDY(dy1);
 
 		}
-		if(keysPressed.contains(KeyEvent.VK_RIGHT))
+		if(keysPressed.contains(PLAYERONERIGHT))
 		{
 			double temp = dx1;
 			dx1 = dx1 - multiple * dy1;
@@ -118,7 +121,7 @@ public class AchtungFinalProject extends JFrame implements ActionListener, KeyLi
 		}
 
 
-		if(keysPressed.contains(KeyEvent.VK_A))
+		if(keysPressed.contains(PLAYERTWOLEFT))
 		{
 			double temp = dx2;
 			dx2 = dx2 + multiple * dy2;
@@ -131,7 +134,7 @@ public class AchtungFinalProject extends JFrame implements ActionListener, KeyLi
 			p2.setDY(dy2);
 			System.out.println("vk1");
 		}
-		if(keysPressed.contains(KeyEvent.VK_D))
+		if(keysPressed.contains(PLAYERTWORIGHT))
 		{
 			double temp = dx2;
 			dx2 = dx2 - multiple * dy2;
