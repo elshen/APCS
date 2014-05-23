@@ -69,7 +69,7 @@ public class AchtungFinalProject extends JFrame implements ActionListener, KeyLi
 		}
 
 		p1 = new Player(Color.red, WINDOW_WIDTH/2, WINDOW_HEIGHT/2, 3, 3);
-		p2 = new Player(Color.cyan, WINDOW_WIDTH/3, WINDOW_HEIGHT/3, 3, 3);
+		p2 = new Player(Color.pink, WINDOW_WIDTH/3, WINDOW_HEIGHT/3, 3, 3);
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Achtung");
