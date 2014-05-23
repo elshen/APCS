@@ -18,7 +18,7 @@ public class AchtungFinalProject extends JFrame implements ActionListener, KeyLi
 	public static final int WINDOW_WIDTH = 1000;
 	public static final int WINDOW_HEIGHT = 800;
 	public static final int TOP_OF_WINDOW = 22;	// Top of the visible window
-	public static final int DELAY_IN_MILLISEC = 30;  // Time delay between updates
+	public static final int DELAY_IN_MILLISEC = 30; // Time delay between updates
 	public static final double MAX_VELOCITY = 3.2;
 	public static final int FONT_SIZE = 30;
 	public static final int START_GAP = 5;
@@ -34,7 +34,7 @@ public class AchtungFinalProject extends JFrame implements ActionListener, KeyLi
 	public static boolean playerOneWins = false;
 	public static boolean playerTwoWins = false;
 
-	public static boolean[][] pixelTemplate = 
+	public static boolean[][] pixelTemplate =
 		{{false, false, false, false ,false, false, false},
 		{false, false, false, true ,false, false, false},
 		{false, false, true, true, true, false, false},
@@ -52,7 +52,7 @@ public class AchtungFinalProject extends JFrame implements ActionListener, KeyLi
 	/**
 	 * @param args
 	 */
-	public static void main(String[] args) 
+	public static void main(String[] args)
 	{
 		// TODO Auto-generated method stub
 		AchtungFinalProject mb = new AchtungFinalProject();
@@ -233,7 +233,7 @@ public class AchtungFinalProject extends JFrame implements ActionListener, KeyLi
 	/**
 	 * Allows for the user to enter commands
 	 */
-	public void keyPressed(KeyEvent e)					// #4A
+	public void keyPressed(KeyEvent e)	// #4A
 	{
 		keysPressed.add(e.getKeyCode());
 	}
@@ -241,20 +241,20 @@ public class AchtungFinalProject extends JFrame implements ActionListener, KeyLi
 	/**
 	 * Called when typing of a key is completed
 	 * Required for any KeyListener
-	 * 
-	 * @param e		Contains info about the key typed
+	 *
+	 * @param e Contains info about the key typed
 	 */
-	public void keyTyped(KeyEvent e)					// #4B
+	public void keyTyped(KeyEvent e)	// #4B
 	{
 	}
 
 	/**
 	 * Called when a key is released
 	 * Required for any KeyListener
-	 * 
-	 * @param e		Contains info about the key released
+	 *
+	 * @param e Contains info about the key released
 	 */
-	public void keyReleased(KeyEvent e)					// #4C
+	public void keyReleased(KeyEvent e)	// #4C
 	{
 		keysPressed.remove(e.getKeyCode());
 	}
@@ -275,13 +275,15 @@ public class AchtungFinalProject extends JFrame implements ActionListener, KeyLi
 			{
 				g.setColor(Color.white);
 				g.setFont(new Font("Serif", Font.PLAIN, FONT_SIZE));
-				g.drawString("WASD Wins!", WINDOW_WIDTH / 2 - 50, TOP_OF_WINDOW + WINDOW_HEIGHT / 2);
+				int lengthgraphics = getFontMetrics(g.getFont()).stringWidth("WASD Wins!");
+				g.drawString("WASD Wins!", WINDOW_WIDTH / 2 - lengthgraphics/2, TOP_OF_WINDOW + WINDOW_HEIGHT / 2 - FONT_SIZE/2);
 			}
 			if(playerTwoWins)
 			{
 				g.setColor(Color.white);
 				g.setFont(new Font("Serif", Font.PLAIN, FONT_SIZE));
-				g.drawString("Arrow Keys Wins!", WINDOW_WIDTH / 2 - 75, TOP_OF_WINDOW + FONT_SIZE + WINDOW_HEIGHT / 2);
+				int lengthgraphics = getFontMetrics(g.getFont()).stringWidth("Arrow Keys Wins!");
+				g.drawString("Arrow Keys Wins!", WINDOW_WIDTH / 2 - lengthgraphics/2, TOP_OF_WINDOW - FONT_SIZE/2 + WINDOW_HEIGHT / 2);
 			}
 		}
 		else
@@ -290,7 +292,8 @@ public class AchtungFinalProject extends JFrame implements ActionListener, KeyLi
 			g.fillRect(0, TOP_OF_WINDOW, WINDOW_WIDTH, WINDOW_HEIGHT - TOP_OF_WINDOW);
 			g.setColor(Color.white);
 			g.setFont(new Font("Serif", Font.PLAIN, FONT_SIZE));
-			g.drawString("PRESS ENTER TO START", WINDOW_WIDTH / 2 - 175, TOP_OF_WINDOW + FONT_SIZE + WINDOW_HEIGHT / 2);
+			int lengthgraphics = getFontMetrics(g.getFont()).stringWidth("PRESS ENTER TO START");
+			g.drawString("PRESS ENTER TO START", WINDOW_WIDTH / 2 - lengthgraphics/2, TOP_OF_WINDOW - FONT_SIZE/2 + WINDOW_HEIGHT / 2);
 		}
 
 	}
