@@ -19,14 +19,15 @@ public class AchtungFinalProject extends JFrame implements ActionListener, KeyLi
 	public static final int WINDOW_HEIGHT = 800;
 	public static final int TOP_OF_WINDOW = 22;	// Top of the visible window
 	public static final int DELAY_IN_MILLISEC = 30;  // Time delay between updates
-	public static final double MAX_VELOCITY = 3;
+	public static final double MAX_VELOCITY = 3.2;
 	public static final int FONT_SIZE = 30;
+	public static final int START_GAP = 5;
 
 	public static double multiple = .1;
 	public static double dx1 = Math.sqrt(MAX_VELOCITY*MAX_VELOCITY/2);
 	public static double dy1 = Math.sqrt(MAX_VELOCITY*MAX_VELOCITY/2);
-	public static double dx2 = Math.sqrt(MAX_VELOCITY*MAX_VELOCITY/2);
-	public static double dy2 = Math.sqrt(MAX_VELOCITY*MAX_VELOCITY/2);
+	public static double dx2 = -Math.sqrt(MAX_VELOCITY*MAX_VELOCITY/2);
+	public static double dy2 = -Math.sqrt(MAX_VELOCITY*MAX_VELOCITY/2);
 
 	public static boolean dead = false;
 	public static boolean gameStarted = false;
@@ -35,11 +36,11 @@ public class AchtungFinalProject extends JFrame implements ActionListener, KeyLi
 
 	public static boolean[][] pixelTemplate = 
 		{{false, false, false, false ,false, false, false},
-		{false, false, false, false ,false, false, false},
+		{false, false, false, true ,false, false, false},
 		{false, false, true, true, true, false, false},
+		{false, true, true, true ,true, true, false},
 		{false, false, true, true ,true, false, false},
-		{false, false, true, true ,true, false, false},
-		{false, false, false, false ,false, false, false},
+		{false, false, false, true ,false, false, false},
 		{false, false, false, false ,false, false, false}};
 	public static boolean[][] screenPixels = new boolean[WINDOW_WIDTH][WINDOW_HEIGHT];
 	private final Set<Integer> keysPressed = new HashSet<Integer>();
@@ -67,10 +68,9 @@ public class AchtungFinalProject extends JFrame implements ActionListener, KeyLi
 				screenPixels[x][y] = false;
 			}
 		}
-
-		p1 = new Player(Color.red, WINDOW_WIDTH/2, WINDOW_HEIGHT/2, 3, 3);
-		p2 = new Player(Color.cyan, WINDOW_WIDTH/3, WINDOW_HEIGHT/3, 3, 3);
-
+		
+		p1 = new Player(Color.red, 0 + START_GAP, TOP_OF_WINDOW + START_GAP, dx1, dy1);
+		p2 = new Player(Color.pink, WINDOW_WIDTH - START_GAP, WINDOW_HEIGHT - START_GAP, dx2, dy2);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Achtung");
 		setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
@@ -100,7 +100,7 @@ public class AchtungFinalProject extends JFrame implements ActionListener, KeyLi
 		if(gameStarted)
 		{
 
-			if(keysPressed.contains(KeyEvent.VK_LEFT))
+			if(keysPressed.contains(KeyEvent.VK_A))
 			{
 				//left player one
 				double temp = dx1;
@@ -114,7 +114,7 @@ public class AchtungFinalProject extends JFrame implements ActionListener, KeyLi
 				p1.setDY(dy1);
 
 			}
-			if(keysPressed.contains(KeyEvent.VK_RIGHT))
+			if(keysPressed.contains(KeyEvent.VK_D))
 			{
 				double temp = dx1;
 				dx1 = dx1 - multiple * dy1;
@@ -128,7 +128,7 @@ public class AchtungFinalProject extends JFrame implements ActionListener, KeyLi
 			}
 
 
-			if(keysPressed.contains(KeyEvent.VK_A))
+			if(keysPressed.contains(KeyEvent.VK_LEFT))
 			{
 				double temp = dx2;
 				dx2 = dx2 + multiple * dy2;
@@ -141,7 +141,7 @@ public class AchtungFinalProject extends JFrame implements ActionListener, KeyLi
 				p2.setDY(dy2);
 				//System.out.println("vk1");
 			}
-			if(keysPressed.contains(KeyEvent.VK_D))
+			if(keysPressed.contains(KeyEvent.VK_RIGHT))
 			{
 				double temp = dx2;
 				dx2 = dx2 - multiple * dy2;
