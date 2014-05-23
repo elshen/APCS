@@ -68,7 +68,7 @@ public class AchtungFinalProject extends JFrame implements ActionListener, KeyLi
 				screenPixels[x][y] = false;
 			}
 		}
-		
+
 		p1 = new Player(Color.red, 0 + START_GAP, TOP_OF_WINDOW + START_GAP, dx1, dy1);
 		p2 = new Player(Color.pink, WINDOW_WIDTH - START_GAP, WINDOW_HEIGHT - START_GAP, dx2, dy2);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -275,13 +275,13 @@ public class AchtungFinalProject extends JFrame implements ActionListener, KeyLi
 			{
 				g.setColor(Color.white);
 				g.setFont(new Font("Serif", Font.PLAIN, FONT_SIZE));
-				g.drawString("Player One Wins!", 0, TOP_OF_WINDOW + FONT_SIZE);
+				g.drawString("WASD Wins!", WINDOW_WIDTH / 2 - 50, TOP_OF_WINDOW + WINDOW_HEIGHT / 2);
 			}
 			if(playerTwoWins)
 			{
 				g.setColor(Color.white);
 				g.setFont(new Font("Serif", Font.PLAIN, FONT_SIZE));
-				g.drawString("Player Two Wins!", 0, TOP_OF_WINDOW + FONT_SIZE);
+				g.drawString("Arrow Keys Wins!", WINDOW_WIDTH / 2 - 75, TOP_OF_WINDOW + FONT_SIZE + WINDOW_HEIGHT / 2);
 			}
 		}
 		else
@@ -290,7 +290,7 @@ public class AchtungFinalProject extends JFrame implements ActionListener, KeyLi
 			g.fillRect(0, TOP_OF_WINDOW, WINDOW_WIDTH, WINDOW_HEIGHT - TOP_OF_WINDOW);
 			g.setColor(Color.white);
 			g.setFont(new Font("Serif", Font.PLAIN, FONT_SIZE));
-			g.drawString("PRESS ENTER TO START", 0, TOP_OF_WINDOW + FONT_SIZE);
+			g.drawString("PRESS ENTER TO START", WINDOW_WIDTH / 2 - 175, TOP_OF_WINDOW + FONT_SIZE + WINDOW_HEIGHT / 2);
 		}
 
 	}
